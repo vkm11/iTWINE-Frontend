@@ -1,0 +1,18 @@
+/* @import url('https://unpkg.com/bs-brain@2.0.4/components/navbars/navbar-1/assets/css/navbar-1.css'); */
+.prev-icon {
+  left: 43px;
+  position: absolute;
+  color: red;
+  /* border: 1px solid red;
+    border-radius: 50%;
+    background: pink; */
+}
+
+.next-icon {
+  right: 43px;
+  position: absolute;
+  color: red;
+  /* border: 1px solid red;
+    border-radius: 50%;
+    background: pink; */
+}

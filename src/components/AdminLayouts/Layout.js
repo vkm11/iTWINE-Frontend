@@ -36,7 +36,7 @@ function Layout({ children }) {
                 return;
             }
 
-            const apiUrl = "http://localhost:4000/auth/verify-token";
+            const apiUrl = `${process.env.REACT_APP_API}/auth/verify-token`;
             await axios.get(apiUrl, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });

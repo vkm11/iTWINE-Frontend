@@ -56,7 +56,7 @@ function Aboutus() {
                 </div>
                 <div className='about-banner-two'>
 
-                    <h3 className='fw-bold text-center aboutText py-3'><span className='itext'>i</span><span className='twine text-warning'>TWINE</span> has proven track record of delivering:</h3>
+                    <h3 className='fw-bold text-center aboutText py-3'><span className='itext'>i</span><span style={{ color: '#8585fa'}}>TWINE</span> has proven track record of delivering:</h3>
                     <div className='container' style={{ maxWidth: '1100px' }}>
                         <div className='row mx-0'>
                             <div className='col-sm-3 col-6 py-2'>
@@ -119,7 +119,18 @@ function Aboutus() {
                                 <p className='py-1 mb-0 fw-bold h5 heading'> PRINCE ODINAKA HYGINUS OHAEKELEM</p>
                                 <p className='py-1 mb-0 h6 heading'>- (President/CEO) <span className='itext'>i</span><span className='twine'>TWINE</span> NIGERIA -</p>
                                 <p className='py-2 mb-0'>Prince Ohaekelem has over 29 years of diverse work experience in dynamic organizational settings including 17 years in position of bottom-line accountability.Background includes a Bachelor Degree in Business Management, Diploma in Marketing/Purchase Management, Human Resource Management and a number of other related certificates in these areas backed by unique experience in operations, company crisis and resolution management...<span className='underline-animate text-primary pointer'>ReadMore</span></p>
+                                 <div className='d-flex'>
+                                    <button className='btn border rounded me-1 btn-outline-primary border-secondary'> <img src="../../images/linkedin.png" alt="" width={18} height={22} /> Linkedin</button>
+                                    <button className='btn border rounded mx-1 btn-outline-primary border-secondary'> <img src="../../images/skype.png" alt="" width={18} height={20} /> Skype</button>
+                                </div>
                             </div>
+
+                        </div>
+                    </div>
+                    <div className="container video-container p-2">
+                        <p className="text-center fw-blod main-head h4 py-3 mb-0">VIDEO INTRODUCTION</p>
+                        <div className='video-wrapper text-center'>
+                            <video src="../../images/Portfolio-itwine1.mp4"  controls></video>
                         </div>
                     </div>
                 </div>

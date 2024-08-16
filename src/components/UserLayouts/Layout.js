@@ -10,7 +10,7 @@ function Layout({ children }) {
     const headerStyle = {
         top: 0,
         position: 'sticky',
-        zIndex: 1,
+        zIndex: 2,
     }
     const navigate = useNavigate();
     const checkTokenValidity = useCallback(async () => {

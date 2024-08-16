@@ -230,7 +230,7 @@ function Login() {
                                 <p className='mb-0 pt-2 pb-4 small text-center'>Please enter your username and password!</p>
 
                                 <form onSubmit={handleSubmit}>
-                                    <div className="card-body p-0" style={{ minHeight: 240 }}>
+                                    <div className="card-body p-0" style={{ minHeight: 235 }}>
                                         <div className="input-container mb-3">
                                             <input
                                                 className="input-text"

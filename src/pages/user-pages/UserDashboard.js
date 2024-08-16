@@ -3,6 +3,9 @@ import Layout from "../../components/UserLayouts/Layout";
 // import ScrollAnimation from 'react-animate-on-scroll';
 import 'animate.css/animate.min.css';
 import 'animate.css';
+import '../../styles/custom.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 function UserDashboard() {
     const [name, setName] = useState('');
 
@@ -82,7 +85,7 @@ function UserDashboard() {
                                             </div>
                                         </div>
                                         <div className='col-sm-8 text-center col-12' style={containerStyle}>
-                                            <p className='main-heading animate__animated animate__fadeInRight animate__delay-1s'>Welcome <span className='text-danger animate__animated animate__jackInTheBox animate__delay-2s'>{name}...</span></p>
+                                            <p className='main-heading animate__animated animate__fadeInRight animate__delay-1s' style={{ filter: "drop-shadow(grey 4px 6px 2px)"}}>Welcome <span className='text-danger animate__animated animate__jackInTheBox animate__delay-2s'>{name}...</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +94,7 @@ function UserDashboard() {
                             <div className="carousel-item">
                                 <div className='row mx-0'>
                                     <div className='col-sm-6'>
-                                        <div className="d-flex align-items-center justify-content-center pt-4" style={{}}>
+                                        <div className="d-flex align-items-center justify-content-center pt-2" style={{}}>
                                             <img className="animate__animated animate__fadeInLeftBig pcImg1" src="../../images/phone.png" alt="img1" />
                                             <img className="animate__animated animate__zoomInDown animate__delay-1s pcImg2" src="../../images/mac1.webp" alt="img2" />
                                             <img className="animate__animated animate__lightSpeedInRight animate__delay-2s pcImg3" src="../../images/tab.png" alt="img3" />
@@ -112,7 +115,7 @@ function UserDashboard() {
                                 <div className='row mx-0'>
                                     <div className='col-sm-6 justify-content-center'>
                                         <div className="p-2 pt-4">
-                                            <img className='carouselImg animate__animated animate__zoomIn rounded-5 animate__delay-1s' src="../../images/img.jpg" width='100%' alt="" />
+                                            <img className='carouselImg animate__animated animate__zoomIn rounded-5 animate__delay-1s' src="../../images/team/resourseFinite.gif" width='100%' alt="" />
                                         </div>
                                     </div>
                                     <div className='col-sm-6 d-flex align-items-center'>
@@ -141,20 +144,19 @@ function UserDashboard() {
                                 </div>
                             </div>
                             <div className="carousel-item">
-                                <img src="../../images/emp2.jpeg" className="d-block w-100 bestofluck" alt="..." />
+                                <img src="../../images/team/handshake.png" className="d-block w-100 bestofluck" alt="..." />
                                 <div className="carousel-caption  d-md-block">
                                     <h5 className='animate__animated animate__bounceInUp fw-bold text-warning h2 main-head'>Best of luck</h5>
                                     <p className='animate__animated animate__fadeInLeftBig animate__delay-1s text-white fw-bold paragraph'>“Best of luck with your great future at the IT company.”</p>
                                 </div>
                             </div>
                         </div>
-                        <button className="carousel-control-prev" style={{  height: 'fit-content', top: '50%' }} type="button" data-bs-target="#homeDivFirst" data-bs-slide="prev">
-                            <span className="carousel-control-prev-icon" aria-hidden="true" />
-                            <span className="visually-hidden">Previous</span>
+                        <button className="carousel-control-prev" style={{  height: 'fit-content', top: '40%' }} type="button" data-bs-target="#homeDivFirst" data-bs-slide="prev">
+                      
+                            <span className="carousel-control-prev-icon prev-icon"><FontAwesomeIcon icon={faAnglesLeft} style={{ height: 'auto' }} /></span>
                         </button>
-                        <button className="carousel-control-next" style={{ height: 'fit-content', top: '50%' }} type="button" data-bs-target="#homeDivFirst" data-bs-slide="next">
-                            <span className="carousel-control-next-icon" aria-hidden="true" />
-                            <span className="visually-hidden">Next</span>
+                        <button className="carousel-control-next" style={{ height: 'fit-content', top: '40%' }} type="button" data-bs-target="#homeDivFirst" data-bs-slide="next">
+                            <span className="carousel-control-next-icon next-icon"><FontAwesomeIcon icon={faAnglesRight} style={{ height: 'auto' }} /></span>
                         </button>
                     </div>
                 </div>

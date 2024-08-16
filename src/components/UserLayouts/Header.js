@@ -4,6 +4,7 @@ import '../../index.css';
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import '../../styles/custom.css'
 function Header() {
     const navBg = {
         background: 'linear-gradient(rgb(112 25 166), rgb(171 85 151))',
@@ -78,7 +79,7 @@ function Header() {
                                         Solutions
                                     </button>
 
-                                    <ul className="dropdown-menu py-0" style={{ filter: 'invert(1)', zIndex: 1060 }}>
+                                    <ul className="dropdown-menu py-0 bsb-zoomIn" style={{ filter: 'invert(1)', zIndex: 1060 }}>
                                         <li>
                                             <NavLink to='/home' className="dropdown-item py-1 px-2" aria-current="page">E-com</NavLink>
                                         </li>
@@ -122,7 +123,7 @@ function Header() {
                                         {name}
                                     </button>
 
-                                    <ul className="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
+                                    <ul className="dropdown-menu dropdown-menu-end py-0 bsb-zoomIn" aria-labelledby="dropdownMenuButton">
                                         <li >
                                             <NavLink className="dropdown-item py-1 px-2" onClick={handleLogout} aria-current="page">Logout</NavLink>
                                         </li>

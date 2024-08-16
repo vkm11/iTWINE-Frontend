@@ -562,6 +562,7 @@
   font-family: "PT Serif", serif;
   font-weight: 200;
   font-style: normal;
+  filter: drop-shadow(1px 6px 1px black);
 }
 .about-banner-two .aboutText .itext {
   color: red;
@@ -569,6 +570,7 @@
   font-weight: 200;
   font-style: italic;
   letter-spacing: 5px;
+  filter: drop-shadow(1px 6px 1px black);
 }
 .text-justify {
   text-align: justify;
