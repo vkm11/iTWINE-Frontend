@@ -220,7 +220,7 @@ function Users() {
         if (validateForm()) {
             if (!selectedUser) {
                 axios
-                    .post("http://localhost:4001/user/create-user", userForm)
+                    .post(`${process.env.REACT_APP_API}/user/create-user`, userForm)
                     .then((res) => {
                         console.log(res.data);
                         setSuccessMsg(res.data.message)
@@ -248,7 +248,7 @@ function Users() {
 
             } else {
                 axios
-                    .put(`http://localhost:4001/user/update-user/${selectedUser._id}`, userForm)
+                    .put(`${process.env.REACT_APP_API}/user/update-user/${selectedUser._id}`, userForm)
                     .then((res) => {
                         console.log(res.data);
                         setSuccessMsg(res.data.msg)
@@ -280,7 +280,7 @@ function Users() {
 
     const getUserData = () => {
         axios
-            .get("http://localhost:4001/user/")
+            .get(`${process.env.REACT_APP_API}/user/`)
             .then((res) => {
                 setUsergetForm(res.data.data);
                 setSearchResult(res.data.data);
@@ -316,7 +316,7 @@ function Users() {
     };
     const deleteUser = (_id) => {
         axios
-            .delete("http://localhost:4001/user/delete-user/" + _id)
+            .delete(`${process.env.REACT_APP_API}/user/delete-user/` + _id)
             .then((res) => {
                 console.log("Data successfully deleted!");
                 setSuccessMsg(res.data.msg);
@@ -370,8 +370,9 @@ function Users() {
                                 <p className='h6 pb-2 headigs'>Search User Master Group:</p></div>
                             <div className="row">
                                 <div className="col-sm-4">
-                                    <label>Name</label>
+                                    <label for="name">Name</label>
                                     <input
+                                        id='name'
                                         type="text"
                                         className="form-control"
                                         placeholder="Search by name"
@@ -380,8 +381,9 @@ function Users() {
                                     />
                                 </div>
                                 <div className="col-sm-4">
-                                    <label>Email</label>
+                                    <label for="email">Email</label>
                                     <input
+                                        id='email'
                                         type="text"
                                         className="form-control"
                                         placeholder="Search by email"

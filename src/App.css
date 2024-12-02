@@ -238,6 +238,16 @@
   .carouselImg {
     height: 300px !important;
   }
+  .prev-icon {
+    left: 43px;
+    position: absolute;
+    color: red;
+  }
+  .next-icon {
+    right: 43px;
+    position: absolute;
+    color: red;
+  }
 }
 
 /* Styles for devices larger than 1024px (larger screens) */
@@ -273,6 +283,26 @@
   .carouselImg {
     height: 300px !important;
   }
+  .prev-icon {
+    left: 43px;
+    position: absolute;
+    color: red;
+  }
+  .next-icon {
+    right: 43px;
+    position: absolute;
+    color: red;
+  }
+}
+:host ::ng-deep .prev-icon {
+  left: 5px;
+  position: absolute;
+  color: red;
+}
+:host ::ng-deep .next-icon{
+   right: 5px;
+    position: absolute;
+    color: red;
 }
 .carouselImg {
   height: 150px;
@@ -297,10 +327,10 @@
 }
 @keyframes topToBottom {
   0% {
-    transform: translateY(-10px); 
+    transform: translateY(-10px);
   }
   50% {
-    transform: translateY(10px); 
+    transform: translateY(10px);
   }
   100% {
     transform: translateY(-10px);
@@ -326,7 +356,7 @@
   font-weight: 700;
   font-style: "italic";
 }
-.heading{
+.heading {
   font-family: "PT Serif", serif;
   font-style: "normal";
 }
@@ -411,16 +441,16 @@
 }
 /* Carousel.css */
 .carousel-indicators button {
-  background-color: #000 !important; 
-  width: 12px !important; 
-  height: 12px !important; 
+  background-color: #000 !important;
+  width: 12px !important;
+  height: 12px !important;
   border-radius: 50%;
   opacity: 0.5;
 }
 
 .carousel-indicators .active {
   background-color: rgb(182, 12, 97) !important;
-  opacity: 1; 
+  opacity: 1;
 }
 /* landing-service */
 .owner {
@@ -575,7 +605,7 @@
 .text-justify {
   text-align: justify;
 }
-.itext{
+.itext {
   color: red;
   font-family: "PT Serif", serif;
   font-weight: 200;
@@ -594,7 +624,7 @@
   text-decoration: none;
 }
 .underline-animate::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   transform: scaleX(0);
@@ -610,12 +640,19 @@
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-.teamImg img{
-    position: relative;
-    width: 100px;
-    height: 110px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    border-radius: 10px;
-    filter: drop-shadow(2px 4px 6px black);
+.teamImg img {
+  position: relative;
+  width: 100px;
+  height: 110px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 10px;
+  filter: drop-shadow(2px 4px 6px black);
+}
+.slick-next, .slick-prev{
+  filter: brightness(0.5);
+}
+.seriveimage img{
+  width: 50px;
+  height: 50px;
 }

@@ -7,6 +7,7 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 function Layout({ children }) {
     const [showArrow, setShowArrow] = useState(false);
+    const [loading, setLoading] = useState(true);
     const headerStyle = {
         top: 0,
         position: 'sticky',
@@ -37,7 +38,10 @@ function Layout({ children }) {
                 // Handle other errors if needed
                 window.alert('An error occurred. Please try again.');
             }
+        } finally {
+            setLoading(false); // Ensure loader is hidden after validation
         }
+
     }, [navigate]);
 
 
@@ -67,6 +71,17 @@ function Layout({ children }) {
             behavior: 'smooth'
         });
     };
+
+    if (loading) {
+        return (
+            <div className="loader d-flex align-items-center justify-content-center min-vh-100">
+                <div className="spinner-border text-warning" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div>
             <div style={headerStyle}>

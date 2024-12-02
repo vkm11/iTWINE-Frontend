@@ -6,8 +6,16 @@ import 'animate.css';
 import '../../styles/custom.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 function UserDashboard() {
     const [name, setName] = useState('');
+    const [clientsData, setClientsData] = useState([]);
 
     const containerStyle = {
         display: 'flex',
@@ -38,43 +46,38 @@ function UserDashboard() {
         }
     }, []);
 
+    const settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        arrows: true,
+    };
+
+    const getData = () => {
+        axios
+            .get(`${process.env.REACT_APP_API}/clients/`)
+            .then((res) => {
+                setClientsData(res.data.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    useEffect(() => {
+        getData();
+    }, []);
 
 
     return (
         <Layout>
 
-            {/* <nav id="navbar-example2" className="navbar bg-body-tertiary px-0 py-0" style={headerStyle}>
-        <ul className="nav nav-pills mx-auto">
-          <li className="nav-item pb-1">
-            <a className="nav-link" href="#home-div">Home</a>
-          </li>
-          <li className="nav-item pb-1">
-            <a className="nav-link" href="#about-div">About us</a>
-          </li>
-          <li className="nav-item pb-1">
-            <a className="nav-link" href="#service-div">Services</a>
-          </li>
-          <li className="nav-item pb-1">
-            <a className="nav-link" href="#contact-div">Contact</a>
-          </li>
-        </ul>
-      </nav>
-    
-
-      <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" className="scrollspy-example bg-body-tertiary p-0 rounded-2" tabIndex="0">
-        <div id="home-div">
-        </div>
-        <div id="about-div">
-        </div>
-        <div id="service-div">
-        </div>
-        <div id="contact-div">
-        </div>
-
-      </div> */}
             <div className='dashboardBanner'>
                 <div className='bg-white'>
-                    <div id="homeDivFirst" className="carousel slide carousel-fade" data-bs-ride="carousel">
+                    
+                    <div id="homeDivFirst" className="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval={10000}>
                         <div className="carousel-inner ">
                             <div className="carousel-item active" >
                                 <div className=''>
@@ -85,7 +88,7 @@ function UserDashboard() {
                                             </div>
                                         </div>
                                         <div className='col-sm-8 text-center col-12' style={containerStyle}>
-                                            <p className='main-heading animate__animated animate__fadeInRight animate__delay-1s' style={{ filter: "drop-shadow(grey 4px 6px 2px)"}}>Welcome <span className='text-danger animate__animated animate__jackInTheBox animate__delay-2s'>{name}...</span></p>
+                                            <p className='main-heading animate__animated animate__fadeInRight animate__delay-1s' style={{ filter: "drop-shadow(grey 4px 6px 2px)" }}>Welcome <span className='text-danger animate__animated animate__jackInTheBox animate__delay-2s'>{name}...</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -151,8 +154,8 @@ function UserDashboard() {
                                 </div>
                             </div>
                         </div>
-                        <button className="carousel-control-prev" style={{  height: 'fit-content', top: '40%' }} type="button" data-bs-target="#homeDivFirst" data-bs-slide="prev">
-                      
+                        <button className="carousel-control-prev" style={{ height: 'fit-content', top: '40%' }} type="button" data-bs-target="#homeDivFirst" data-bs-slide="prev">
+
                             <span className="carousel-control-prev-icon prev-icon"><FontAwesomeIcon icon={faAnglesLeft} style={{ height: 'auto' }} /></span>
                         </button>
                         <button className="carousel-control-next" style={{ height: 'fit-content', top: '40%' }} type="button" data-bs-target="#homeDivFirst" data-bs-slide="next">
@@ -307,6 +310,25 @@ function UserDashboard() {
                         </div>
                     </div>
                 </div>
+                <div className='container py-2'>
+
+                    {clientsData.length > 0 ? (
+                        <Slider {...settings}>
+                            {clientsData.map((client, index) => (
+                                <div key={index} className='px-1'>
+                                    <div className='card px-1 text-center'>
+                                        <p className='mb-0'>{client.name}</p>
+                                        <p className='mb-0 small text-primary'>{client.project}</p>
+                                    </div>
+
+                                </div>
+                            ))}
+                        </Slider>
+                    ) : (
+                        <p>No clients found</p>
+                    )}
+
+                </div>
                 <div className='container-fluid px-0 bg-white'>
                     <div className='px-2'>
                         <div className='text-center py-2'>
@@ -315,17 +337,15 @@ function UserDashboard() {
                         <div className='row mx-0'>
                             <div className='col-sm-6'>
                                 <div className="card text-center" style={card}>
-                                    <div className="card-header">
-                                        Featured
-                                    </div>
-                                    <div className="card-body">
-                                        <h5 className="card-title">Special title treatment</h5>
-                                        <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-
-                                    </div>
-                                    <div className="card-footer text-body-secondary">
-                                        2 days ago
-                                    </div>
+                                    <iframe
+                                        width="100%"
+                                        height="450"
+                                        src="https://www.youtube.com/embed/Cfi0mymfKiA"
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        title="YouTube Video 2">
+                                    </iframe>
                                 </div>
                             </div>
                             <div className='col-sm-6'>
@@ -360,6 +380,7 @@ function UserDashboard() {
 
 
             </div>
+          
 
         </Layout>
 

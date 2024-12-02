@@ -110,19 +110,7 @@ function Header() {
 
                                 <ul className="dropdown-menu py-0">
                                     <li>
-                                        <NavLink to='/create-student' className="dropdown-item  py-1 px-2" aria-current="page">Student</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to='/create-school' className="dropdown-item  py-1 px-2" aria-current="page">School</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to='/create-parent' className="dropdown-item  py-1 px-2" aria-current="page">Parents</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to='/create-section' className="dropdown-item  py-1 px-2" aria-current="page">Section</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to='/teacher' className="dropdown-item  py-1 px-2" aria-current="page">Teacher</NavLink>
+                                        <NavLink to='/clients' className="dropdown-item  py-1 px-2" aria-current="page">Clients</NavLink>
                                     </li>
 
                                 </ul>
@@ -137,7 +125,7 @@ function Header() {
                                         <NavLink to='/create-user' className="dropdown-item py-1 px-2" aria-current="page">User</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/create-role' className="dropdown-item py-1 px-2" aria-current="page">Role</NavLink>
+                                        <NavLink to='/role' className="dropdown-item py-1 px-2" aria-current="page">Role</NavLink>
                                     </li>
                                 </ul>
                             </div>

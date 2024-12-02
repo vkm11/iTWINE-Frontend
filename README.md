@@ -6,3 +6,5 @@
 5) npm install @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
 6) npm install animate.css
 7) npm install --save-dev @babel/plugin-proposal-private-property-in-object
+8) npm install react-slick slick-carousel
+9) npm install react-chatbotify --save

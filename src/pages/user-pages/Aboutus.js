@@ -130,7 +130,7 @@ function Aboutus() {
                     <div className="container video-container p-2">
                         <p className="text-center fw-blod main-head h4 py-3 mb-0">VIDEO INTRODUCTION</p>
                         <div className='video-wrapper text-center'>
-                            <video src="../../images/Portfolio-itwine1.mp4"  controls></video>
+                            <video width="100%" height="450" src="../../images/Portfolio-itwine1.mp4"  controls></video>
                         </div>
                     </div>
                 </div>

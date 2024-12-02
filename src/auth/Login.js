@@ -34,7 +34,7 @@ function Login() {
             const token = localStorage.getItem('token');
             if (!token) return;
 
-            const apiUrl = "http://localhost:4001/auth/verify-token";
+            const apiUrl = `${process.env.REACT_APP_API}/auth/verify-token`;
             await axios.get(apiUrl, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
@@ -143,7 +143,10 @@ function Login() {
         }
 
         try {
-            const apiUrl = "http://localhost:4001/auth/login";
+            // const apiUrl = `http://localhost:4000/auth/login`;
+            console.log('API URL:', process.env.REACT_APP_API);
+
+            const apiUrl = `${process.env.REACT_APP_API}/auth/login`;
             const response = await axios.post(apiUrl, loginForm);
             const { token, name, role } = response.data;
             setSuccessMessage("Login Successfully");
@@ -220,12 +223,18 @@ function Login() {
 
     return (
         <>
+
             <div className='container-fluid backBg px-0'>
                 <div className='background-design row mx-0'>
+
                     <div className='container col d-flex align-items-center justify-content-center min-vh-100'>
 
                         <div className={`cards-flip ${isFlipped ? 'flip' : ''}`}>
+                            <div className='d-flex justify-content-center d-sm-none'>
+                                <img src="./images/logo3.png" alt="" width={150} style={{ filter: 'hue-rotate(300deg)'}} />
+                            </div>
                             <div className='card signIn-face signIn-front'>
+                               
                                 <p className='fw-bold h1 text-center py-2 mb-0'>Sign In</p>
                                 <p className='mb-0 pt-2 pb-4 small text-center'>Please enter your username and password!</p>
 

@@ -12,6 +12,15 @@ import Dashboard from "./pages/admin-pages/Dashboard"
 // user 
 import UserDashboard from './pages/user-pages/UserDashboard';
 import Aboutus from './pages/user-pages/Aboutus'
+import Clients from "./pages/admin-pages/Clients";
+import Role from "./pages/admin-pages/Role";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import ItwineAdvantages from "./pages/user-pages/ItwineAdvantages";
+import Service from "./pages/user-pages/Service";
+import Leave from "./pages/user-pages/Leave";
+
+
 function App() {
 
   return (
@@ -22,17 +31,15 @@ function App() {
             <Route exact path="/" element={<Login />} />
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/admin-dashboard" element={<Dashboard />} />
-            {/*  <Route exact path="/create-student" element={<CreateStudent />} />
-            <Route exact path="/create-school" element={<CreateSchool />} />
-
-            <Route exact path="/create-parent" element={<CreateParent />} />
-            <Route exact path="/create-role" element={<CreateRole />} />
-            <Route exact path="/create-section" element={<CreateSection />} />
-            <Route exact path="/teacher" element={<Teacher />} /> */}
+            <Route exact path="/clients" element={<Clients />} />
+            <Route exact path="/role" element={<Role />} />
 
             <Route exact path="/create-user" element={<CreateUsers />} />
             <Route exact path="/user-dashboard" element={<UserDashboard />} />
             <Route exact path="/aboutus" element={<Aboutus />} />
+            <Route exact path="/itwineads" element={<ItwineAdvantages />} />
+            <Route exact path="/service" element={<Service />} />
+            <Route exact path="/leave" element={<Leave />} />
 
           </Routes>
         </div>
