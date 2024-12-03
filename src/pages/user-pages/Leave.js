@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Layout from '../../components/UserLayouts/Layout';
-
+import axios from 'axios';
 const Leave = () => {
     const [leaveForm, setLeaveForm] = useState({
         fname: '',
@@ -11,12 +11,15 @@ const Leave = () => {
         dep: '',
         formdate: '',
         todate: '',
+        status: "0"
     });
 
     const [errors, setErrors] = useState({});
     const [isFormValid, setIsFormValid] = useState(false); // Track form validity
     const [touched, setTouched] = useState({}); // Track touched fields
-
+    const [responseMessage, setResponseMessage] = useState(''); 
+    const [leavesData, setLeavesData] = useState([]);
+    const [hideStatus] = useState(false);
     const handleInputChange = (e) => {
         const { name, value } = e.target;
 
@@ -119,26 +122,64 @@ const Leave = () => {
         if (validateForm()) {
             console.log('Form submitted:', leaveForm);
 
-            // Reset the form fields
-            setLeaveForm({
-                fname: '',
-                lname: '',
-                phone: '',
-                email: '',
-                reason: '',
-                dep: '',
-                formdate: '',
-                todate: '',
-            });
+            axios
+                .post(`${process.env.REACT_APP_API}/leave/create-leave`, leaveForm)
+                .then((res) => {
+                    console.log(res.data);
 
-            // Reset errors
-            setErrors({});
-            setTouched({});
-            setIsFormValid(false); // Reset the button state after form submission
+                    setLeaveForm({
+                        fname: '',
+                        lname: '',
+                        phone: '',
+                        email: '',
+                        reason: '',
+                        dep: '',
+                        formdate: '',
+                        todate: '',
+                        status: '0'
+                    });
+                    setErrors({});
+                    setTouched({});
+                    setIsFormValid(false);
+
+                    setResponseMessage(res.data.message);  // Store the message from response
+                    setTimeout(() => {
+                        setResponseMessage('');  // Optionally clear the message after 1 second
+                    }, 3000);
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
         }
+    };
+    const handleStatusChange = (e) => {
+        setLeaveForm((prevForm) => ({
+            ...prevForm,
+            status: e.target.value
+        }));
+    };
+    const getData = () => {
+        axios
+            .get(`${process.env.REACT_APP_API}/leave/`)
+            .then((res) => {
+                setLeavesData(res.data.data);
+                // console.log(setLeavesData)
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
     };
 
     useEffect(() => {
+        getData();
         setIsFormValid(validateForm());
     }, [leaveForm, touched, validateForm]);
 
@@ -150,7 +191,7 @@ const Leave = () => {
                     <form>
                         <div className="row mx-0">
                             <div className="col-sm-4">
-                                <label className="form-label" htmlFor="fname">Applicant First Name</label><span className='text-danger'>*</span>
+                                <label className="form-label mb-0" htmlFor="fname">Applicant First Name</label><span className='text-danger'>*</span>
                                 <input
                                     className="form-control"
                                     id="fname"
@@ -164,7 +205,7 @@ const Leave = () => {
                                 {touched.fname && errors.fname && <div className="text-danger">{errors.fname}</div>}
                             </div>
                             <div className="col-sm-4">
-                                <label className="form-label" htmlFor="lname">Applicant Last Name</label><span className='text-danger'>*</span>
+                                <label className="form-label mb-0" htmlFor="lname">Applicant Last Name</label><span className='text-danger'>*</span>
                                 <input
                                     className="form-control"
                                     id="lname"
@@ -178,7 +219,7 @@ const Leave = () => {
                                 {touched.lname && errors.lname && <div className="text-danger">{errors.lname}</div>}
                             </div>
                             <div className="col-sm-4">
-                                <label className="form-label" htmlFor="dep">Departments</label><span className='text-danger'>*</span>
+                                <label className="form-label mb-0" htmlFor="dep">Departments</label><span className='text-danger'>*</span>
                                 <select
                                     className="form-control"
                                     id="dep"
@@ -198,7 +239,7 @@ const Leave = () => {
                         </div>
                         <div className="row mt-2 mx-0">
                             <div className="col-sm-4">
-                                <label className="form-label" htmlFor="phone">Phone</label><span className='text-danger'>*</span>
+                                <label className="form-label mb-0" htmlFor="phone">Phone</label><span className='text-danger'>*</span>
                                 <input
                                     className="form-control"
                                     id="phone"
@@ -212,7 +253,7 @@ const Leave = () => {
                                 {touched.phone && errors.phone && <div className="text-danger">{errors.phone}</div>}
                             </div>
                             <div className="col-sm-4">
-                                <label className="form-label" htmlFor="email">Email</label><span className='text-danger'>*</span>
+                                <label className="form-label mb-0" htmlFor="email">Email</label><span className='text-danger'>*</span>
                                 <input
                                     className="form-control"
                                     id="email"
@@ -226,7 +267,7 @@ const Leave = () => {
                                 {touched.email && errors.email && <div className="text-danger">{errors.email}</div>}
                             </div>
                             <div className="col-sm-4">
-                                <label className="form-label">Reason for Leave</label><span className='text-danger'>*</span>
+                                <label className="form-label mb-0">Reason for Leave</label><span className='text-danger'>*</span>
                                 <div className="form-check">
                                     <input
                                         className="form-check-input"
@@ -271,7 +312,7 @@ const Leave = () => {
                         </div>
                         <div className="row mt-2 mx-0">
                             <div className="col-sm-4">
-                                <label className="form-label" htmlFor="formdate">From</label><span className='text-danger'>*</span>
+                                <label className="form-label mb-0" htmlFor="formdate">From</label><span className='text-danger'>*</span>
                                 <input
                                     className="form-control"
                                     id="formdate"
@@ -285,7 +326,7 @@ const Leave = () => {
                                 {touched.formdate && errors.formdate && <div className="text-danger">{errors.formdate}</div>}
                             </div>
                             <div className="col-sm-4">
-                                <label className="form-label" htmlFor="todate">To</label><span className='text-danger'>*</span>
+                                <label className="form-label mb-0" htmlFor="todate">To</label><span className='text-danger'>*</span>
                                 <input
                                     className="form-control"
                                     id="todate"
@@ -299,6 +340,20 @@ const Leave = () => {
                                 {touched.todate && errors.todate && <div className="text-danger">{errors.todate}</div>}
                                 {touched.todate && errors.date && <div className="text-danger">{errors.date}</div>} {/* Display custom date range error */}
                             </div>
+                            {hideStatus && (<div className="col-sm-4">
+                                <label className='form-label my-0'>Status</label><span className='text-danger'>*</span>
+                                <select
+                                    className="form-control"
+                                    value={leaveForm.status}
+                                    onChange={handleStatusChange}
+                                >
+                                    <option value="" disabled>Select status</option>
+                                    <option value="0" className="text-warning">pending</option>
+                                    <option value="1" className="text-success">Approved</option>
+                                    <option value="2" className="text-danger">Rejected</option>
+
+                                </select>
+                            </div>)}
                         </div>
                         <div className="row mt-2 mx-0">
                             <div className="col-sm-12 text-end">
@@ -312,6 +367,46 @@ const Leave = () => {
                             </div>
                         </div>
                     </form>
+                    {responseMessage && <div className="response-message">{responseMessage}</div>}
+                </div>
+                <div className='p-2'>
+                    <table className="table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sl.no</th>
+                                <th>Name</th>
+                                <th>Department</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Reason for Leave</th>
+                                <th>Form date</th>
+                                <th>To date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {leavesData.map((le, index) => (
+                                <tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td>{le.fname} {le.lname}</td>
+                                    <td>{le.dep}</td>
+                                    <td>{le.phone}</td>
+                                    <td>{le.email}</td>
+                                    <td>{le.reason}</td>
+                                    <td>{formatDate(le.formdate)}</td>
+                                    <td>{formatDate(le.todate)}</td>
+                                    {/* <td>{le.status}</td> */}
+                                    <td>
+                                        <div className='text-center'>
+                                            {le.status === 0 && <span className="badge rounded-pill text-bg-warning">Pending</span>}
+                                            {le.status === 1 && <span className="badge rounded-pill text-bg-danger">Rejected</span>}
+                                            {le.status === 2 && <span className="badge rounded-pill text-bg-success">Approved</span>}
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </Layout>
         </>

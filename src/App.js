@@ -19,6 +19,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import ItwineAdvantages from "./pages/user-pages/ItwineAdvantages";
 import Service from "./pages/user-pages/Service";
 import Leave from "./pages/user-pages/Leave";
+import EmpLeave from "./pages/admin-pages/EmpLeave";
 
 
 function App() {
@@ -33,6 +34,8 @@ function App() {
             <Route exact path="/admin-dashboard" element={<Dashboard />} />
             <Route exact path="/clients" element={<Clients />} />
             <Route exact path="/role" element={<Role />} />
+            <Route exact path="/emp-leave" element={<EmpLeave />} />
+
 
             <Route exact path="/create-user" element={<CreateUsers />} />
             <Route exact path="/user-dashboard" element={<UserDashboard />} />

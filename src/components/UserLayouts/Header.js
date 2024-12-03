@@ -131,10 +131,10 @@ function Header() {
                                             <p className="px-2 mb-0 text-center">{name}</p>
                                         </li>
                                         <li>
-                                            <NavLink className="dropdown-item py-1 px-2 text-center" to='/leave' aria-current="page">Apply Leave</NavLink>
+                                            <NavLink className="dropdown-item py-1 px-2 text-center bg-none" to='/leave' aria-current="page">Apply Leave</NavLink>
                                         </li>
                                         <li>
-                                            <NavLink className="dropdown-item py-1 px-2 text-center" onClick={handleLogout} aria-current="page">Logout</NavLink>
+                                            <NavLink className="dropdown-item py-1 px-2 text-center bg-none" onClick={handleLogout} aria-current="page">Logout</NavLink>
                                         </li>
                                     </ul>
                                 </div>
