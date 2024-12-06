@@ -137,7 +137,10 @@ function Header() {
                                 </button>
                                 <ul className="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
                                     <li>
-                                        <NavLink className="dropdown-item py-1 px-2" onClick={handleLogout} aria-current="page">Logout</NavLink>
+                                        <NavLink className="dropdown-item py-1 px-2 bg-none" to="/emp-leave" aria-current="page">leaves</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink className="dropdown-item py-1 px-2 bg-none" onClick={handleLogout} aria-current="page">Logout</NavLink>
                                     </li>
                                 </ul>
                             </div>

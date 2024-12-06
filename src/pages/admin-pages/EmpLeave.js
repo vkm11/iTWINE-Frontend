@@ -68,7 +68,7 @@ const EmpLeave = () => {
         <Layout>
             <div><p className='text-center mb-0 fs-3 fw-bold'>Employee Leaves</p></div>
             <div className='p-2'>
-                <table className="table table-striped table-hover table-bordered">
+                <table className="table table-striped table-hover table-bordered border-secondary">
                     <thead>
                         <tr>
                             <th>Sl.no</th>
@@ -79,11 +79,11 @@ const EmpLeave = () => {
                             <th>Reason for Leave</th>
                             <th>From Date</th>
                             <th>To Date</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th className='text-center'>Status</th>
+                            <th className='text-center'>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="table-group-divider">
                         {leavesData.map((le, index) => (
                             <tr key={le._id}>
                                 <td>{index + 1}</td>
@@ -116,7 +116,10 @@ const EmpLeave = () => {
                                         )}
                                     </div>
                                 </td>
-                                <td>
+                                <td className='py-0'>
+                                    <span className='d-flex align-items-center justify-content-center pt-1'> 
+
+                                    
                                     {editStatus === le._id ? (
                                         // If editing, show Save and Cancel buttons
                                         <>
@@ -142,6 +145,7 @@ const EmpLeave = () => {
                                                 <FontAwesomeIcon icon={faPenToSquare} />
                                         </button>
                                     )}
+                                    </span>
                                 </td>
                             </tr>
                         ))}

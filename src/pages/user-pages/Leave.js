@@ -163,7 +163,6 @@ const Leave = () => {
             .get(`${process.env.REACT_APP_API}/leave/`)
             .then((res) => {
                 setLeavesData(res.data.data);
-                // console.log(setLeavesData)
             })
             .catch((error) => {
                 console.log(error);
@@ -181,6 +180,10 @@ const Leave = () => {
     useEffect(() => {
         getData();
         setIsFormValid(validateForm());
+        const interval = setInterval(() => {
+            getData();
+        }, 1000); 
+        return () => clearInterval(interval);
     }, [leaveForm, touched, validateForm]);
 
     return (
@@ -370,7 +373,7 @@ const Leave = () => {
                     {responseMessage && <div className="response-message">{responseMessage}</div>}
                 </div>
                 <div className='p-2'>
-                    <table className="table table-striped table-hover table-bordered">
+                    <table className="table table-striped table-hover table-bordered border-secondary">
                         <thead>
                             <tr>
                                 <th>Sl.no</th>
@@ -381,10 +384,10 @@ const Leave = () => {
                                 <th>Reason for Leave</th>
                                 <th>Form date</th>
                                 <th>To date</th>
-                                <th>Status</th>
+                                <th className='text-center'>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="table-group-divider">
                             {leavesData.map((le, index) => (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
