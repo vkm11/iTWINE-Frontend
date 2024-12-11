@@ -189,7 +189,10 @@ const Leave = () => {
     return (
         <>
             <Layout>
-                <p className="font22 text-center fw-bold">Leave Application Form</p>
+                <div className='text-center py-2'>
+                    <p className='fw-bold font22 pt-2 mb-0'>Leave Application Form</p>
+                    <img src="../../images/newLayer/layer.png" alt="layer" height="50" width="100%" />
+                </div>
                 <div className="container-fluid px-2">
                     <form>
                         <div className="row mx-0">

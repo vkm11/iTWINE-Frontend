@@ -112,6 +112,9 @@ function Header() {
                                     <li>
                                         <NavLink to='/clients' className="dropdown-item  py-1 px-2" aria-current="page">Clients</NavLink>
                                     </li>
+                                    <li>
+                                        <NavLink to='/news' className="dropdown-item  py-1 px-2" aria-current="page">News</NavLink>
+                                    </li>
 
                                 </ul>
                             </div>

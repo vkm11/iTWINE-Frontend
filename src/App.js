@@ -20,6 +20,7 @@ import ItwineAdvantages from "./pages/user-pages/ItwineAdvantages";
 import Service from "./pages/user-pages/Service";
 import Leave from "./pages/user-pages/Leave";
 import EmpLeave from "./pages/admin-pages/EmpLeave";
+import News from "./pages/admin-pages/News";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
             <Route exact path="/clients" element={<Clients />} />
             <Route exact path="/role" element={<Role />} />
             <Route exact path="/emp-leave" element={<EmpLeave />} />
+            <Route exact path="/news" element={<News />} />
 
 
             <Route exact path="/create-user" element={<CreateUsers />} />
