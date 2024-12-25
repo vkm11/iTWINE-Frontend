@@ -16,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function UserDashboard() {
     const [name, setName] = useState('');
     const [clientsData, setClientsData] = useState([]);
+    const [newsData, setNewsData] = useState([])
 
     const containerStyle = {
         display: 'flex',
@@ -65,9 +66,28 @@ function UserDashboard() {
                 console.log(error);
             });
     };
+    const formatDate = (date) => {
+        const d = new Date(date);
+        const day = String(d.getDate()).padStart(2, '0');
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const year = d.getFullYear();
+        return `${day}-${month}-${year}`;
+    };
+    const getNews = () => {
+        axios
+            .get(`${process.env.REACT_APP_API}/news/`)
+            .then((res) => {
+                setNewsData(res.data.data);
+                console.log('Response Data:', res.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     useEffect(() => {
         getData();
+        getNews();
     }, []);
 
 
@@ -76,7 +96,22 @@ function UserDashboard() {
 
             <div className='dashboardBanner'>
                 <div className='bg-white'>
-                    
+                    <div className='marquee-container pt-1'>
+                        {newsData.length > 0 ? (
+                            <div className='marquee-content'>
+                                {newsData.map((offer, index) => (
+                                    <div key={index} className='marquee-item'>
+                                        <p className='mb-0 small pe-2'>{formatDate(offer.date)}</p>
+                                        <p className='mb-0 small text-primary'>{offer.news}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <p>No News found</p>
+                        )}
+                    </div>
+
+
                     <div id="homeDivFirst" className="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval={10000}>
                         <div className="carousel-inner ">
                             <div className="carousel-item active" >
@@ -93,7 +128,7 @@ function UserDashboard() {
                                     </div>
                                 </div>
                             </div>
-
+                       
                             <div className="carousel-item">
                                 <div className='row mx-0'>
                                     <div className='col-sm-6'>
@@ -380,7 +415,7 @@ function UserDashboard() {
 
 
             </div>
-          
+
 
         </Layout>
 

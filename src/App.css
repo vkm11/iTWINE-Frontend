@@ -661,3 +661,66 @@
   background: transparent !important;
   color: black !important;
 }
+
+
+
+
+/* marquee start  */
+/* .marquee-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap; 
+}
+
+.marquee-content {
+  display: flex;
+  animation: marquee 40s linear infinite;  
+}
+
+.marquee-item {
+  margin-right: 20px; 
+  display: flex;
+  align-items: center;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);  
+  }
+  100% {
+    transform: translateX(-100%);  
+  }
+} */
+
+/* Marquee container */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;  
+}
+
+.marquee-content {
+  display: flex;
+  animation: marquee 40s linear infinite; 
+}
+
+.marquee-item {
+  margin-right: 20px;  
+  display: flex;
+  align-items: center;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);  
+  }
+  100% {
+    transform: translateX(-100%);  
+  }
+}
+
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;  
+}
+
+/* marquee end */
