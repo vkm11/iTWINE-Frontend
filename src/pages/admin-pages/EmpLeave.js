@@ -68,6 +68,7 @@ const EmpLeave = () => {
         <Layout>
             <div><p className='text-center mb-0 fs-3 fw-bold'>Employee Leaves</p></div>
             <div className='p-2'>
+                {leavesData.length > 0 ? (
                 <table className="table table-striped table-hover table-bordered border-secondary">
                     <thead>
                         <tr>
@@ -151,6 +152,9 @@ const EmpLeave = () => {
                         ))}
                     </tbody>
                 </table>
+                ) : (
+                    <p className="text-center">No data Found</p>
+                ) }
             </div>
         </Layout>
     );

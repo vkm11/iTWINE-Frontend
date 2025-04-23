@@ -57,7 +57,8 @@ function Header() {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, logout!',
-            cancelButtonText: 'No, cancel!'
+            cancelButtonText: 'No, cancel!',
+            allowOutsideClick: false,
         });
 
         if (result.isConfirmed) {
@@ -67,13 +68,16 @@ function Header() {
 
             navigate('/');
 
-            Swal.fire(
-                "Logged Out",
-                "You have been logged out successfully.",
-                'success'
-            );
+            // Show success message after logout
+            Swal.fire({
+                title: "Logged Out",
+                text: "You have been logged out successfully.",
+                icon: "success",
+                allowOutsideClick: false
+            });
         }
     };
+
 
 
     return (

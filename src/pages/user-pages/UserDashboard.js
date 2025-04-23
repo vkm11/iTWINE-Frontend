@@ -75,7 +75,7 @@ function UserDashboard() {
     };
     const getNews = () => {
         axios
-            .get(`${process.env.REACT_APP_API}/news/`)
+            .get(`${process.env.REACT_APP_API}/news/get-active-data/`)
             .then((res) => {
                 setNewsData(res.data.data);
                 console.log('Response Data:', res.data);

@@ -121,9 +121,15 @@ const Leave = () => {
 
         if (validateForm()) {
             console.log('Form submitted:', leaveForm);
+            const userId = localStorage.getItem('user_id');
+
+            const formDataWithUserId = {
+                ...leaveForm,
+                userId  // 👈 Add userId to the data being sent
+            };
 
             axios
-                .post(`${process.env.REACT_APP_API}/leave/create-leave`, leaveForm)
+                .post(`${process.env.REACT_APP_API}/leave/create-leave`, formDataWithUserId)
                 .then((res) => {
                     console.log(res.data);
 
@@ -142,9 +148,9 @@ const Leave = () => {
                     setTouched({});
                     setIsFormValid(false);
 
-                    setResponseMessage(res.data.message);  // Store the message from response
+                    setResponseMessage(res.data.message);
                     setTimeout(() => {
-                        setResponseMessage('');  // Optionally clear the message after 1 second
+                        setResponseMessage('');
                     }, 3000);
                 })
                 .catch((error) => {
@@ -152,6 +158,7 @@ const Leave = () => {
                 });
         }
     };
+
     const handleStatusChange = (e) => {
         setLeaveForm((prevForm) => ({
             ...prevForm,
@@ -159,8 +166,10 @@ const Leave = () => {
         }));
     };
     const getData = () => {
+        const userId = localStorage.getItem('user_id');
+        console.log(userId)
         axios
-            .get(`${process.env.REACT_APP_API}/leave/`)
+            .get(`${process.env.REACT_APP_API}/leave/user-leaves/${userId}`)
             .then((res) => {
                 setLeavesData(res.data.data);
             })
@@ -376,6 +385,7 @@ const Leave = () => {
                     {responseMessage && <div className="response-message">{responseMessage}</div>}
                 </div>
                 <div className='p-2'>
+                    {leavesData.length > 0 ? (
                     <table className="table table-striped table-hover table-bordered border-secondary">
                         <thead>
                             <tr>
@@ -413,6 +423,9 @@ const Leave = () => {
                             ))}
                         </tbody>
                     </table>
+                    ) : (
+                        <p className="text-center text-muted">No leave records found.</p>
+                    )}
                 </div>
             </Layout>
         </>
