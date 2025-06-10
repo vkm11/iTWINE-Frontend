@@ -415,7 +415,7 @@ function Login() {
                                     </div>
                                     <div className='card-footer border-0 forgot-button'>
                                         <div className=' d-grid'>
-                                            <button type='submit' className='btn btn-info' onClick={submitupdateBtn}>Submit</button>
+                                            <button type='submit' className='btn btn-info' onClick={submitupdateBtn}>Update</button>
                                         </div>
                                     </div>
                                 </form>

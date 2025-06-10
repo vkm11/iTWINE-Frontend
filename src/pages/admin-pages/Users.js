@@ -233,7 +233,7 @@ function Users() {
                             info: "",
                             uname: "",
                             password: "",
-                            status: '',
+                            status: '1',
                             role: ''
                         });
                         setTimeout(() => {

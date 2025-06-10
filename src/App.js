@@ -21,6 +21,10 @@ import Service from "./pages/user-pages/Service";
 import Leave from "./pages/user-pages/Leave";
 import EmpLeave from "./pages/admin-pages/EmpLeave";
 import News from "./pages/admin-pages/News";
+import Projects from "./pages/admin-pages/Projects";
+import Holidays from "./pages/admin-pages/Holidays";
+import Demo from "./pages/admin-pages/Demo";
+import Demoone from "./pages/admin-pages/Demoone";
 
 
 function App() {
@@ -37,15 +41,16 @@ function App() {
             <Route exact path="/role" element={<Role />} />
             <Route exact path="/emp-leave" element={<EmpLeave />} />
             <Route exact path="/news" element={<News />} />
-
-
+            <Route exact path="/projects" element={<Projects />} />
+            <Route exact path="/holidays" element={<Holidays />} />
+            <Route exact path="/demo" element={<Demo />} />
+            <Route exact path="/demoone" element={<Demoone />} />
             <Route exact path="/create-user" element={<CreateUsers />} />
             <Route exact path="/user-dashboard" element={<UserDashboard />} />
             <Route exact path="/aboutus" element={<Aboutus />} />
             <Route exact path="/itwineads" element={<ItwineAdvantages />} />
             <Route exact path="/service" element={<Service />} />
             <Route exact path="/leave" element={<Leave />} />
-
           </Routes>
         </div>
       </div>
