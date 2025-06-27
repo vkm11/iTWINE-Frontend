@@ -25,6 +25,7 @@ import Projects from "./pages/admin-pages/Projects";
 import Holidays from "./pages/admin-pages/Holidays";
 import Demo from "./pages/admin-pages/Demo";
 import Demoone from "./pages/admin-pages/Demoone";
+import Teams from "./pages/admin-pages/Teams";
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
             <Route exact path="/news" element={<News />} />
             <Route exact path="/projects" element={<Projects />} />
             <Route exact path="/holidays" element={<Holidays />} />
+            <Route exact path="/teams" element={<Teams/>}/>
             <Route exact path="/demo" element={<Demo />} />
             <Route exact path="/demoone" element={<Demoone />} />
             <Route exact path="/create-user" element={<CreateUsers />} />
