@@ -35,36 +35,39 @@ function Login() {
             if (!token) return;
 
             const apiUrl = `${process.env.REACT_APP_API}/auth/verify-token`;
-            await axios.get(apiUrl, {
+            const response = await axios.get(apiUrl, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
+
+            // Refresh token if returned
+            if (response.data.token) {
+                localStorage.setItem('token', response.data.token);
+            }
         } catch (error) {
             if (error.response?.status === 401) {
-                // Token is expired or invalid
                 setErrorMessage('Session expired. Please log in again.');
                 localStorage.removeItem('token');
                 localStorage.removeItem('loginForm');
                 setTimeout(() => {
-                    navigate('/')
-                    setErrorMessage('')
-                }, 1000)
+                    navigate('/');
+                    setErrorMessage('');
+                }, 1000);
             } else {
-                // Handle other errors if needed
                 setErrorMessage('An error occurred. Please try again.');
             }
         }
     }, [navigate]);
 
+
     useEffect(() => {
         const localStoragedata = localStorage.getItem('loginForm');
         if (localStoragedata) {
             const loginForm = JSON.parse(localStoragedata);
-            const role = loginForm.role
-            console.log(role)
+            const role = loginForm.role;
+            console.log(role);
         } else {
             console.log('No login form data found in localStorage.');
         }
-
 
         const savedForm = JSON.parse(localStorage.getItem('loginForm'));
         if (savedForm) {
@@ -72,9 +75,16 @@ function Login() {
             setRememberMe(true);
         }
 
-        // Check token validity on component mount
-        checkTokenValidity();
+        checkTokenValidity(); // Check once on mount
+
+        // Periodically check token validity to refresh it
+        const interval = setInterval(() => {
+            checkTokenValidity();
+        }, 4 * 60 * 1000); // every 4 minutes
+
+        return () => clearInterval(interval);
     }, [checkTokenValidity]);
+
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);

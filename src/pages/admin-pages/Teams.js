@@ -321,7 +321,7 @@ const Teams = () => {
                                         <td>{formatDateToDisplay(team.startdate)}</td> 
                                         <td>{formatDateToDisplay(team.enddate)}</td>  
                                         <td>
-                                            {team.status === 0 && <span className='badge rounded-pill text-bg-warning'>Inactive</span>}
+                                            {team.status === 0 && <span className='badge rounded-pill text-bg-danger'>Inactive</span>}
                                             {team.status === 1 && <span className='badge rounded-pill text-bg-success'>Active</span>}
                                         </td>
                                         <td className="text-center">
