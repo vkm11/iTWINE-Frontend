@@ -29,6 +29,13 @@ const Teams = () => {
         setSearchText(true);
         setAddtext(false);
         setHideDesc(false);
+        setTeamForm({
+            teamname: "",
+            description: "",
+            startdate: "",
+            enddate: "",
+            status: ""
+        });
     };
 
     const addBtn = () => {
@@ -89,6 +96,7 @@ const Teams = () => {
                 .post(`${process.env.REACT_APP_API}/teams/create-teams`, teamform)
                 .then((res) => {
                     setSuccessMsg('Team added successfully!');
+                    addBtn();
                     setTeamForm({
                         teamname: "",
                         description: "",
@@ -96,8 +104,11 @@ const Teams = () => {
                         enddate: "",
                         status: "1"
                     });
-                    addBtn();
-                    getData();
+                    setTimeout(()=>{
+                       
+                        getData();
+                        setSuccessMsg('');
+                    },1000)
                 })
                 .catch((error) => {
                     console.error('Error:', error);
@@ -106,8 +117,12 @@ const Teams = () => {
             axios.put(`${process.env.REACT_APP_API}/teams/update-teams/${selectedTeam._id}`, teamform)
                 .then((res) => {
                     setSuccessMsg(res.data.msg || 'Team updated successfully!');
-                    addBtn();
-                    getData();
+                    setTimeout(()=>{
+                        setSuccessMsg('')
+                        addBtn();
+                        getData();
+                    },1000)
+                
                 })
                 .catch((error) => {
                     console.error("Error:", error);
@@ -138,7 +153,7 @@ const Teams = () => {
         });
         setSelectedTeam(selected);
         setAddtext(true);
-        setHidestatus(false);
+        setHidestatus(true);
         setSearchText(false);
         setHideDesc(true);
         setTouched({});
@@ -149,16 +164,17 @@ const Teams = () => {
         axios
             .delete(`${process.env.REACT_APP_API}/teams/delete-teams/` + _id)
             .then((res) => {
-                setSuccessMsg(res.data.msg);
+                setSuccessMsg(res.data.msg); 
                 setTimeout(() => {
-                    getData();
-                    setSuccessMsg("")
-                }, 1000)
+                    getData();               
+                    setSuccessMsg("");      
+                }, 1000);
             })
             .catch((error) => {
                 console.log(error);
             });
     };
+
 
     const formatDateToInput = (isoString) => {
         if (!isoString) return '';
@@ -261,6 +277,7 @@ const Teams = () => {
                                         onChange={handleInputChange}
                                         onBlur={handleBlur}
                                     >
+                                        <option value='' selected disabled>Please select status</option>
                                         <option value='1'>Active</option>
                                         <option value='0'>Inactive</option>
                                     </select>
@@ -281,7 +298,7 @@ const Teams = () => {
             </div>
 
             <div className='card m-2'>
-                <div className='card-body'>
+                <div className='card-body table-responsive'>
                     <table className='table table-bordered table-striped table-hover'>
                         <thead>
                             <tr>
